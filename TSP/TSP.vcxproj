@@ -149,11 +149,13 @@
     <ClCompile Include="cityList.cpp" />
     <ClCompile Include="nearestNeighbor.cpp" />
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="tspSolution.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cityList.h" />
     <ClInclude Include="city.h" />
     <ClInclude Include="nearestNeighbor.h" />
+    <ClInclude Include="tspSolution.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

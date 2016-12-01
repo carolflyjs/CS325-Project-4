@@ -2,57 +2,56 @@
 #include <limits>
 
 
-nearestNeighbor::nearestNeighbor(std::vector<double> distMatrix, int numCities)
+nearestNeighbor::nearestNeighbor(cityList* inputCities)
 {
-    this->activeDistMatrix = distMatrix;
-    this->totalNumCities = numCities;
-    this->activeNumCities = this->totalNumCities;
+    this->activeCities = inputCities;
 }
 
-double nearestNeighbor::getNextCity(int current)
+double nearestNeighbor::getDistBtw(city city1, city city2)
 {
-    double temp = 0;
+    return pow(pow(city1.xCoord - city2.xCoord, 2.0) + pow(city1.yCoord - city2.yCoord, 2.0), 0.5);
+}
+
+city nearestNeighbor::getNextCity(city current)
+{
+    double tempDis = 0;
     double nearest = std::numeric_limits<double>::max();
     int nextCityID;
-    for (int j = 0; j < this->totalNumCities; j++) {
-        temp = getDist(current, j);
-        if (temp != 0) {
-            if (temp <= nearest) {
-                nearest = temp;
-                nextCityID = j;
-            }         
+    int nextCityPos;
+    city nextCity;
+    for (int j = 0; j < this->activeCities->getNumCities(); j++) {
+        tempDis = getDistBtw(current, this->activeCities->getCityInput().at(j));
+        if (tempDis <= nearest) {
+                nearest = tempDis;
+                nextCityID = this->activeCities->getCityInput().at(j).cityID;
+                nextCityPos = j;
+                nextCity = this->activeCities->getCityInput().at(j);
         }
     }
-    crossoutMatrix(current);
+
+    this->activeCities->removeCity(nextCityPos);
     cityInOrder.push_back(nextCityID);
     distInOrder.push_back(nearest);
-    activeNumCities--;
-
-    return nearest;
+    totalDist += nearest;
+    return nextCity;
 }
 
-double nearestNeighbor::getDist(int i, int j)
-{
-    return activeDistMatrix.at(i * totalNumCities + j);
-}
-
-void nearestNeighbor::crossoutMatrix(int usedCityID)
-{
-    for (int i = 0; i < totalNumCities; i++) {
-        activeDistMatrix.at(i * totalNumCities + usedCityID) = 0.0;
-        activeDistMatrix.at(usedCityID * totalNumCities + i) = 0.0;
-    }
-}
 
 void nearestNeighbor::getAllCities()
 {
-    double current;
-    cityInOrder.push_back(0);
+    int initialCityID = 0;
+    int totalNumCities = this->activeCities->getNumCities();
+    city initial = this->activeCities->getCityInput().at(initialCityID);
+    city temp = initial;
+    cityInOrder.push_back(initialCityID);
+    this->activeCities->removeCity(initialCityID);
     for (int i = 1; i < totalNumCities; i++) {
-        current = getNextCity(cityInOrder.at(i - 1));
-        totalDist += current;
+        temp = getNextCity(temp);
     }
-
+    double lastDist = getDistBtw(initial, temp);
+    distInOrder.push_back(lastDist);
+    totalDist += lastDist;
+    return;
 }
 
 nearestNeighbor::~nearestNeighbor()

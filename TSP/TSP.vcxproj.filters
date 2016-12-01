@@ -24,6 +24,9 @@
     <ClInclude Include="nearestNeighbor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tspSolution.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cityList.cpp">
@@ -33,6 +36,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="nearestNeighbor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tspSolution.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

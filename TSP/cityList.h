@@ -20,11 +20,13 @@ private:
 
 public:
     cityList(std::string fileName);
-    std::vector<double> getDistMatrix();
-    int getNumCities();
+    std::vector<double> cityList::getDistMatrix() { return this->distMatrix; }
+    void removeCity(int cityToRemove);
+    int cityList::getNumCities() { return this->cityInput.size(); }
+    std::vector<city> getCityInput() { return this->cityInput; }
     int convert(int city1, int city2);
-
-
+    void setCityInput(std::vector<city> cityInput) { this->cityInput = cityInput; }
+    void setNumCitiess(int numCities) { this->numCities = numCities; }
 };
 
 #endif

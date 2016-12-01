@@ -1,6 +1,3 @@
-﻿  nearestNeighbor.cpp
-  Generating Code...
-  Compiling...
-  test.cpp
-  Generating Code...
-  TSP.vcxproj -> C:\Users\carolj\Dropbox\Study\OSU\06_2016_Fall\CS326_Analysis_of_Algorithm\Project-2\TSP\Debug\TSP.exe
+﻿  test.cpp
+c:\users\carolj\dropbox\study\osu\06_2016_fall\cs326_analysis_of_algorithm\project-4\tsp\tsp\test.cpp(15): warning C4018: '<': signed/unsigned mismatch
+  TSP.vcxproj -> C:\Users\carolj\Dropbox\Study\OSU\06_2016_Fall\CS326_Analysis_of_Algorithm\Project-4\TSP\Debug\TSP.exe

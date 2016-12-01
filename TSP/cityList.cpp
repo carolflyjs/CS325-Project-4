@@ -9,8 +9,6 @@ cityList::cityList(std::string fileName) {
         // read input into cityInput
         readInput();
 
-        // update distance matrix
-        updateMatrix();
 
         //close input
         inputFile.close();
@@ -20,15 +18,13 @@ cityList::cityList(std::string fileName) {
     }
 }
 
-std::vector<double> cityList::getDistMatrix()
+void cityList::removeCity(int cityToRemove)
 {
-    return distMatrix;
+    this->cityInput.erase(this->cityInput.begin() + cityToRemove);
+    this->numCities--;
 }
 
-int cityList::getNumCities()
-{
-    return numCities;
-}
+
 
 void cityList::readInput()
 {
